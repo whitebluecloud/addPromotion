@@ -16,16 +16,11 @@ window.addEventListener('load', function(evt) {
 	if(itemId != null) {
 		$('#item_id').val(itemId);
 	}
-	
-	chrome.runtime.getBackgroundPage(function(eventPage) {
-		eventPage.setDragEvent();
-	});
-	
-	$('#item_id').attr("droppable",true).on("drop",function(e){
-		e.preventDefault();
-		$('#item_id').val(e.dataTransfer.getData("text"));
-	});
-	
+    
+    var frebieItemId = ls.getItem("frebieItemId");
+	if(frebieItemId != null) {
+		$('#frebieItemId').val(frebieItemId);
+	}
 });
 
 // 상품ID 입력시
@@ -43,14 +38,15 @@ document.getElementById('confirmBtn').addEventListener('click', function(evt){
 $('#promotion').change(function(data){
 	var prvdDiv = $('#prvdDiv');
 	var prvdMthdDiv = $('#prvdMthdDiv');
+    var frebieItemDiv = $('#frebieItemDiv');
 	
 	isPrvdShow() == true ? prvdDiv.show() : prvdDiv.hide();
 	isPrvdMthdShow() == true ? prvdMthdDiv.show() : prvdMthdDiv.hide();
+    isFrebieItemIdShow() == true ? frebieItemDiv.show() : frebieItemDiv.hide();
 });
 
 function isPrvdShow(){
 	var prvdShowArr = ["에누리", "쿠폰", "S머니", "S포인트", "카드선할인"];
-	var prvdPrftTypeCd = $('input[name=prvdPrftTypeCd]:checked').val();	
 	var prom = $('#promotion>option:selected').val();
 	var prvdShowFlag = false;
 	
@@ -65,7 +61,6 @@ function isPrvdShow(){
 
 function isPrvdMthdShow(){
 	var prvdMthdShowArr = ["S머니","S포인트"];
-	var prvdMthdCd = $('input[name=prvdMthdCd]:checked').val();	
 	var prom = $('#promotion>option:selected').val();
 	var prvdMthdFlag = false;
 
@@ -77,6 +72,21 @@ function isPrvdMthdShow(){
 	
 	return prvdMthdFlag;
 }
+
+function isFrebieItemIdShow(){
+	var frebieItemIdShowArr = ["상품사은품"];
+	var prom = $('#promotion>option:selected').val();
+	var frebieItemIdShowFlag = false;
+
+	for(var i=0; i<frebieItemIdShowArr.length; i++) {
+		if(prom == frebieItemIdShowArr[i]){
+			frebieItemIdShowFlag = true;
+		}
+	};
+	
+	return frebieItemIdShowFlag;
+}
+
 function createPromotion(){
 	var itemId = $('#item_id').val();
 	var env = $('input[name=env]:checked').val();
@@ -91,7 +101,8 @@ function createPromotion(){
 	var param = {"itemId":itemId, "offerType":promotion};
 	isPrvdShow() == true ? param.prvdPrftTypeCd = $('input[name=prvdPrftTypeCd]:checked').val() : '';
 	isPrvdMthdShow() == true ? param.prvdMthdCd = $('input[name=prvdMthdCd]:checked').val() : '';
-	
+    isFrebieItemIdShow() == true ? param.frebieItemId = $('#frebieItemId').val() : '';
+    
 	var targetUrl = 'http://' + env + '-m.apps.ssg.com/api/dponly/prom.ssg';
 	
 	$.ajax({
@@ -139,5 +150,6 @@ window.addEventListener("unload", function (event) {
 	
 	// 상품Id
 	ls.setItem("itemId", $('#item_id').val());
+    ls.setItem("frebieItemId", $('#frebieItemId').val());
 });
 

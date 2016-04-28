@@ -2,7 +2,7 @@
     "name": "Add Promotion",
     "description": "Add Promotion",
     "manifest_version": 2,
-    "version": "0.1.4",
+    "version": "0.1.5",
     "browser_action": {
         "name": "popup",
         "default_icon": "sale128.png",

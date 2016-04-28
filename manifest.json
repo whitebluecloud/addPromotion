@@ -1,0 +1,28 @@
+{
+    "name": "Add Promotion",
+    "description": "Add Promotion",
+    "manifest_version": 2,
+    "version": "0.1.4",
+    "browser_action": {
+        "name": "popup",
+        "default_icon": "sale128.png",
+        "default_title": "Add Promotion",
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "scripts": ["builder.js"]
+    },
+    "content_scripts": [
+        {
+            "matches": [ "*://*/*" ],
+            "js": ["jquery.min.js"],
+            "run_at": "document_start"
+        }
+    ],
+    "permissions": [
+        "contextMenus", "tabs", "\u003Call_urls>", "notifications"
+    ],
+    "icons": {
+        "16": "sale16.png"
+    }
+}

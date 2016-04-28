@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>SSG Add Promotion</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+	<style>
+	</style>
+  </head>
+  <body>
+	<div id="container" class="container" style="width:300px;">
+		<div>
+			<img src="sale128.png" style="width:30px">
+			<span class="text-primary"><strong>SSG Add Promotion</strong></span>
+			<hr style="margin-top:0px;margin-bottom:5px">
+		</div>
+	<form class="form-horizontal">
+		<div class="form-group col-sm-1" style="margin-bottom:1px;">
+			<label for="env" class="control-label">적용환경</label>
+			<label class="radio-inline" style="padding-top:0px;"><input type="radio" name="env" value="DEV" checked>DEV</label>
+			<label class="radio-inline" style="padding-top:0px;"><input type="radio" name="env" value="QA">QA</label>
+		</div>
+		<div class="form-group col-sm-1" style="margin-bottom:1px;">
+			<label for="item_id" class="control-label">프로모션</label>
+			<select id="promotion" style="width:200px">
+				<option value="에누리">에누리</option>
+				<option value="쿠폰">쿠폰세일</option>
+				<option value="N+1">N+1</option>
+				<option value="2입기획">2입기획</option>
+				<option value="다다익선">다다익선</option>
+				<option value="사은품">사은품</option>
+				<option value="무이자">무이자</option>
+				<option value="S머니">S머니</option>
+				<option value="S포인트">S포인트</option>
+				<option value="카드선할인">카드선할인</option>
+				<option value="청구할인">청구할인</option>
+				<option value="가격할인">가격할인</option>
+				<option value="옵션다가">옵션다가</option>
+				<option value="퀵배송">퀵배송</option>
+				<option value="점포예약">점포예약</option>
+				<option value="예약배송">예약배송</option>
+				<option value="점포택배">점포택배</option>
+				<option value="점포픽업">점포픽업</option>
+				<option value="매직픽업">매직픽업</option>
+				<option value="동영상">동영상</option>
+				<option value="명절상품">명절상품</option>
+				
+			</select>
+		</div>
+		<div id="prvdDiv" class="form-group col-sm-1" style="margin-bottom:1px;">
+			<label for="prvdPrftTypeCd" class="control-label">제공이익유형</label>
+			<label class="radio-inline" style="padding-top:0px;"><input type="radio" name="prvdPrftTypeCd" value="10">금액</label>
+			<label class="radio-inline" style="padding-top:0px;"><input type="radio" name="prvdPrftTypeCd" value="20" checked>요율</label>
+		</div>
+		<div id="prvdMthdDiv" class="form-group col-sm-1" style="margin-bottom:1px;display:none">
+			<label for="prvdMthdCd" class="control-label">오퍼제공방법</label>
+			<label class="radio-inline" style="padding-top:0px;"><input type="radio" name="prvdMthdCd" value="10" >할인</label>
+			<label class="radio-inline" style="padding-top:0px;"><input type="radio" name="prvdMthdCd" value="20" checked>적립</label>
+		</div>		
+		<div class="form-group col-sm-1" style="margin-bottom:5px;">
+			<input id="item_id" class="form-control" name="item_id" placeholder="상품ID를 입력하세요."/>
+		</div>
+		<div class="form-group col-sm-1" style="margin-bottom:5px;">
+			<input id="confirmBtn" type="button" class="btn-small btn-primary" value="프로모션 추가">
+		</div>
+		<div id="result_message" class="form-group col-sm-1" style="margin-bottom:1px;display:none">
+			<label for="result_prom" class="control-label">RESULT</label>
+			<textarea name="result_prom" id="result_prom" class="form-control" rows="4">...</textarea>
+		</div>
+	</form>
+		<script type="text/javascript" src="jquery.min.js"></script>
+		<script type="text/javascript" src="popup.js"></script>
+	</div>
+  </body>
+</html>
